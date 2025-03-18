@@ -43,7 +43,7 @@ const FighterList = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container px-4 mx-auto">
       <div className="mb-6 space-y-4">
         <input
           type="text"
@@ -56,7 +56,7 @@ const FighterList = () => {
         <select
           value={selectedDivision}
           onChange={(e) => setSelectedDivision(e.target.value)}
-          className="w-full p-2 border rounded bg-white"
+          className="w-full p-2 bg-white border rounded"
         >
           {divisions.map(division => (
             <option key={division} value={division}>
@@ -66,25 +66,25 @@ const FighterList = () => {
         </select>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredFighters.map(fighter => (
           <Link
             key={fighter._id}
             to={`/fighter/${fighter._id}`}
-            className="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="block p-6 transition-shadow duration-300 bg-white rounded-lg shadow-lg hover:shadow-xl"
           >
             <div className="flex flex-col items-center">
-              <div className="w-64 h-64 mb-4 overflow-hidden rounded-full border-4 border-gray-200">
+              <div className="w-64 h-64 mb-4 overflow-hidden border-4 border-gray-200 rounded-full">
                 <img
                   src={fighter.image}
                   alt={fighter.name}
-                  className="w-full h-full object-cover object-top"
+                  className="object-cover object-top w-full h-full"
                   onError={handleImageError}
                 />
               </div>
-              <h2 className="text-xl font-bold text-center mb-2">{fighter.name}</h2>
-              <p className="text-gray-600 mb-2">Division: {fighter.division}</p>
-              <p className="text-gray-600 mb-2">Record: {fighter.wins}-{fighter.losses}-{fighter.draws}</p>
+              <h2 className="mb-2 text-xl font-bold text-center">{fighter.name}</h2>
+              <p className="mb-2 text-gray-600">Division: {fighter.division}</p>
+              <p className="mb-2 text-gray-600">Record: {fighter.wins}-{fighter.losses}-{fighter.draws}</p>
               <p className="text-gray-600">Rank: #{fighter.rank || 'Unranked'}</p>
             </div>
           </Link>
@@ -92,7 +92,7 @@ const FighterList = () => {
       </div>
 
       {filteredFighters.length === 0 && (
-        <div className="text-center text-gray-600 mt-8">
+        <div className="mt-8 text-center text-gray-600">
           No fighters found matching your search.
         </div>
       )}
